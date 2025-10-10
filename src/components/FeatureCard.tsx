@@ -32,7 +32,7 @@ export const FeatureCard = ({ icon: Icon, title, description, path, priority = "
         </div>
         {priority === "must" && (
           <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
-            Essential
+            Esencial
           </span>
         )}
       </div>

@@ -22,52 +22,52 @@ const Assessment = () => {
   const questions: Question[] = [
     {
       id: "1",
-      text: "Over the past 2 weeks, how often have you felt down, depressed, or hopeless?",
+      text: "En las últimas 2 semanas, ¿con qué frecuencia te has sentido decaído, deprimido o sin esperanza?",
       options: [
-        { value: "0", label: "Not at all" },
-        { value: "1", label: "Several days" },
-        { value: "2", label: "More than half the days" },
-        { value: "3", label: "Nearly every day" },
+        { value: "0", label: "Para nada" },
+        { value: "1", label: "Varios días" },
+        { value: "2", label: "Más de la mitad de los días" },
+        { value: "3", label: "Casi todos los días" },
       ],
     },
     {
       id: "2",
-      text: "How often have you had little interest or pleasure in doing things?",
+      text: "¿Con qué frecuencia has tenido poco interés o placer en hacer cosas?",
       options: [
-        { value: "0", label: "Not at all" },
-        { value: "1", label: "Several days" },
-        { value: "2", label: "More than half the days" },
-        { value: "3", label: "Nearly every day" },
+        { value: "0", label: "Para nada" },
+        { value: "1", label: "Varios días" },
+        { value: "2", label: "Más de la mitad de los días" },
+        { value: "3", label: "Casi todos los días" },
       ],
     },
     {
       id: "3",
-      text: "How often have you felt nervous, anxious, or on edge?",
+      text: "¿Con qué frecuencia te has sentido nervioso, ansioso o al límite?",
       options: [
-        { value: "0", label: "Not at all" },
-        { value: "1", label: "Several days" },
-        { value: "2", label: "More than half the days" },
-        { value: "3", label: "Nearly every day" },
+        { value: "0", label: "Para nada" },
+        { value: "1", label: "Varios días" },
+        { value: "2", label: "Más de la mitad de los días" },
+        { value: "3", label: "Casi todos los días" },
       ],
     },
     {
       id: "4",
-      text: "How often have you had trouble falling or staying asleep?",
+      text: "¿Con qué frecuencia has tenido problemas para conciliar o mantener el sueño?",
       options: [
-        { value: "0", label: "Not at all" },
-        { value: "1", label: "Several days" },
-        { value: "2", label: "More than half the days" },
-        { value: "3", label: "Nearly every day" },
+        { value: "0", label: "Para nada" },
+        { value: "1", label: "Varios días" },
+        { value: "2", label: "Más de la mitad de los días" },
+        { value: "3", label: "Casi todos los días" },
       ],
     },
     {
       id: "5",
-      text: "How would you rate your overall mental wellbeing?",
+      text: "¿Cómo calificarías tu bienestar mental en general?",
       options: [
-        { value: "0", label: "Excellent" },
-        { value: "1", label: "Good" },
-        { value: "2", label: "Fair" },
-        { value: "3", label: "Poor" },
+        { value: "0", label: "Excelente" },
+        { value: "1", label: "Bueno" },
+        { value: "2", label: "Regular" },
+        { value: "3", label: "Malo" },
       ],
     },
   ];
@@ -84,8 +84,8 @@ const Assessment = () => {
     } else {
       setShowResults(true);
       toast({
-        title: "Assessment Complete",
-        description: "Your results have been compiled. Remember, this is not a diagnosis.",
+        title: "Evaluación Completa",
+        description: "Tus resultados han sido compilados. Recuerda, esto no es un diagnóstico.",
       });
     }
   };
@@ -103,27 +103,27 @@ const Assessment = () => {
   const getRecommendation = (score: number) => {
     if (score <= 4) {
       return {
-        level: "Minimal",
+        level: "Mínimo",
         color: "text-secondary",
-        message: "You're showing minimal signs of distress. Continue practicing self-care.",
+        message: "Muestras signos mínimos de malestar. Continúa practicando el autocuidado.",
       };
     } else if (score <= 9) {
       return {
-        level: "Mild",
+        level: "Leve",
         color: "text-primary",
-        message: "You may be experiencing mild symptoms. Consider exploring our resources.",
+        message: "Podrías estar experimentando síntomas leves. Considera explorar nuestros recursos.",
       };
     } else if (score <= 14) {
       return {
-        level: "Moderate",
+        level: "Moderado",
         color: "text-yellow-500",
-        message: "You're showing moderate symptoms. We recommend speaking with a professional.",
+        message: "Muestras síntomas moderados. Recomendamos hablar con un profesional.",
       };
     } else {
       return {
-        level: "Severe",
+        level: "Severo",
         color: "text-destructive",
-        message: "You may be experiencing severe symptoms. Please consider seeking professional help immediately.",
+        message: "Podrías estar experimentando síntomas severos. Por favor considera buscar ayuda profesional de inmediato.",
       };
     }
   };
@@ -141,15 +141,15 @@ const Assessment = () => {
             <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full mb-4">
               <Heart className="h-8 w-8 text-primary" />
             </div>
-            <h1 className="text-3xl font-bold mb-2">Assessment Results</h1>
+            <h1 className="text-3xl font-bold mb-2">Resultados de la Evaluación</h1>
           </div>
 
           <div className="bg-card border border-border rounded-xl p-8 mb-6">
             <div className="text-center mb-6">
-              <p className="text-muted-foreground mb-2">Your Score</p>
+              <p className="text-muted-foreground mb-2">Tu Puntuación</p>
               <p className="text-5xl font-bold mb-2">{score}</p>
               <p className={`text-xl font-semibold ${recommendation.color}`}>
-                {recommendation.level} Symptoms
+                Síntomas {recommendation.level}s
               </p>
             </div>
 
@@ -158,30 +158,30 @@ const Assessment = () => {
             </div>
 
             <div className="space-y-3">
-              <h3 className="font-semibold">Recommended Next Steps:</h3>
+              <h3 className="font-semibold">Próximos Pasos Recomendados:</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Explore our Resource Library for helpful materials</li>
-                <li>• Connect with support professionals via Anonymous Chat</li>
-                <li>• Join a Support Group to connect with others</li>
-                <li>• Track your progress over time</li>
+                <li>• Explora nuestra Biblioteca de Recursos para materiales útiles</li>
+                <li>• Conéctate con profesionales de apoyo vía Chat Anónimo</li>
+                <li>• Únete a un Grupo de Apoyo para conectar con otros</li>
+                <li>• Sigue tu progreso a lo largo del tiempo</li>
               </ul>
             </div>
           </div>
 
           <div className="flex gap-4">
             <Button onClick={() => { setShowResults(false); setCurrentQuestion(0); setAnswers({}); }} variant="outline" className="flex-1">
-              Retake Assessment
+              Repetir Evaluación
             </Button>
             <Button onClick={() => window.location.href = "/resources"} className="flex-1">
-              View Resources
+              Ver Recursos
             </Button>
           </div>
 
           <div className="mt-6 p-4 bg-muted/50 border border-border rounded-lg">
             <p className="text-xs text-muted-foreground">
-              <strong>Important:</strong> This assessment is not a diagnostic tool. It's designed to help you 
-              understand your current mental health status. For a professional evaluation, please consult with a 
-              mental health professional.
+              <strong>Importante:</strong> Esta evaluación no es una herramienta de diagnóstico. Está diseñada para 
+              ayudarte a entender tu estado actual de salud mental. Para una evaluación profesional, por favor consulta 
+              con un profesional de salud mental.
             </p>
           </div>
         </main>
@@ -195,15 +195,15 @@ const Assessment = () => {
       
       <main className="container mx-auto px-4 py-8 max-w-2xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Mental Health Assessment</h1>
+          <h1 className="text-3xl font-bold mb-2">Evaluación de Salud Mental</h1>
           <p className="text-muted-foreground mb-4">
-            Take a moment to evaluate your mental wellbeing. This is completely anonymous.
+            Tómate un momento para evaluar tu bienestar mental. Esto es completamente anónimo.
           </p>
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">Progress</span>
+              <span className="text-muted-foreground">Progreso</span>
               <span className="text-muted-foreground">
-                {currentQuestion + 1} of {questions.length}
+                {currentQuestion + 1} de {questions.length}
               </span>
             </div>
             <Progress value={progress} className="h-2" />
@@ -242,14 +242,14 @@ const Assessment = () => {
             className="flex-1"
           >
             <ChevronLeft className="mr-2 h-4 w-4" />
-            Previous
+            Anterior
           </Button>
           <Button
             onClick={handleNext}
             disabled={!answers[questions[currentQuestion].id]}
             className="flex-1"
           >
-            {currentQuestion === questions.length - 1 ? "View Results" : "Next"}
+            {currentQuestion === questions.length - 1 ? "Ver Resultados" : "Siguiente"}
             <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         </div>

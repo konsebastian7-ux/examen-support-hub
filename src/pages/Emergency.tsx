@@ -8,31 +8,31 @@ const Emergency = () => {
 
   const handleEmergencyCall = () => {
     toast({
-      title: "Connecting to Emergency Services",
-      description: "You will be connected to emergency services shortly.",
+      title: "Conectando con Servicios de Emergencia",
+      description: "Serás conectado con servicios de emergencia en breve.",
     });
   };
 
   const emergencyContacts = [
     {
-      name: "National Suicide Prevention Lifeline",
+      name: "Línea Nacional de Prevención del Suicidio",
       number: "988",
-      description: "24/7 free and confidential support",
+      description: "Apoyo gratuito y confidencial 24/7",
     },
     {
-      name: "Crisis Text Line",
-      number: "Text HOME to 741741",
-      description: "Free 24/7 support via text",
+      name: "Línea de Crisis por Texto",
+      number: "Envía HOLA al 741741",
+      description: "Apoyo gratuito 24/7 por mensaje",
     },
     {
-      name: "RAINN (Sexual Assault)",
+      name: "RAINN (Agresión Sexual)",
       number: "1-800-656-4673",
-      description: "24/7 confidential support",
+      description: "Apoyo confidencial 24/7",
     },
     {
-      name: "National Domestic Violence Hotline",
+      name: "Línea Nacional de Violencia Doméstica",
       number: "1-800-799-7233",
-      description: "24/7 support and resources",
+      description: "Apoyo y recursos 24/7",
     },
   ];
 
@@ -45,9 +45,9 @@ const Emergency = () => {
           <div className="inline-flex items-center justify-center p-3 bg-destructive/10 rounded-full mb-4">
             <AlertCircle className="h-8 w-8 text-destructive" />
           </div>
-          <h1 className="text-3xl font-bold mb-2">Emergency Assistance</h1>
+          <h1 className="text-3xl font-bold mb-2">Asistencia de Emergencia</h1>
           <p className="text-muted-foreground">
-            If you're in immediate danger, please call emergency services right away.
+            Si estás en peligro inmediato, por favor llama a los servicios de emergencia de inmediato.
           </p>
         </div>
 
@@ -55,10 +55,10 @@ const Emergency = () => {
         <div className="bg-gradient-card border border-destructive/50 rounded-xl p-6 mb-8">
           <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
             <Phone className="h-5 w-5 text-destructive" />
-            Immediate Help
+            Ayuda Inmediata
           </h2>
           <p className="text-muted-foreground mb-4">
-            If this is a life-threatening emergency, call your local emergency number immediately.
+            Si esta es una emergencia que pone en riesgo tu vida, llama a tu número de emergencia local inmediatamente.
           </p>
           <Button 
             onClick={handleEmergencyCall}
@@ -66,13 +66,13 @@ const Emergency = () => {
             size="lg"
           >
             <Phone className="mr-2 h-5 w-5" />
-            Call Emergency Services (911)
+            Llamar a Servicios de Emergencia (911)
           </Button>
         </div>
 
         {/* Crisis Support Numbers */}
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold mb-4">Crisis Support Resources</h2>
+          <h2 className="text-xl font-semibold mb-4">Recursos de Apoyo en Crisis</h2>
           {emergencyContacts.map((contact, index) => (
             <div
               key={index}
@@ -94,12 +94,12 @@ const Emergency = () => {
 
         {/* Safety Information */}
         <div className="mt-8 p-6 bg-muted/50 border border-border rounded-xl">
-          <h3 className="font-semibold mb-3">Remember:</h3>
+          <h3 className="font-semibold mb-3">Recuerda:</h3>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li>• All calls and texts to these services are free and confidential</li>
-            <li>• Trained counselors are available 24/7 to help</li>
-            <li>• You don't have to face this alone - reaching out is a sign of strength</li>
-            <li>• These services are available regardless of your location or situation</li>
+            <li>• Todas las llamadas y mensajes a estos servicios son gratuitos y confidenciales</li>
+            <li>• Consejeros capacitados están disponibles 24/7 para ayudar</li>
+            <li>• No tienes que enfrentar esto solo - pedir ayuda es una señal de fortaleza</li>
+            <li>• Estos servicios están disponibles sin importar tu ubicación o situación</li>
           </ul>
         </div>
       </main>

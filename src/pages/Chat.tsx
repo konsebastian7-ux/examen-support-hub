@@ -16,7 +16,7 @@ const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hello! I'm here to support you. Everything you share is completely anonymous and confidential. How are you feeling today?",
+      text: "¡Hola! Estoy aquí para apoyarte. Todo lo que compartas es completamente anónimo y confidencial. ¿Cómo te sientes hoy?",
       sender: "support",
       timestamp: new Date(),
     },
@@ -41,7 +41,7 @@ const Chat = () => {
     setTimeout(() => {
       const supportResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: "Thank you for sharing. I'm here to listen and support you. Take your time.",
+        text: "Gracias por compartir. Estoy aquí para escucharte y apoyarte. Tómate tu tiempo.",
         sender: "support",
         timestamp: new Date(),
       };
@@ -62,9 +62,9 @@ const Chat = () => {
       
       <main className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold mb-2">Anonymous Support Chat</h1>
+          <h1 className="text-3xl font-bold mb-2">Chat de Apoyo Anónimo</h1>
           <p className="text-muted-foreground">
-            You're connected to a support professional. Everything you share is confidential.
+            Estás conectado con un profesional de apoyo. Todo lo que compartas es confidencial.
           </p>
         </div>
 
@@ -99,7 +99,7 @@ const Chat = () => {
                     <p className="text-sm leading-relaxed">{message.text}</p>
                   </div>
                   <span className="text-xs text-muted-foreground">
-                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    {message.timestamp.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </div>
               </div>
@@ -113,7 +113,7 @@ const Chat = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Type your message..."
+                placeholder="Escribe tu mensaje..."
                 className="flex-1"
               />
               <Button onClick={handleSend} size="icon" className="flex-shrink-0">
@@ -121,7 +121,7 @@ const Chat = () => {
               </Button>
             </div>
             <p className="text-xs text-muted-foreground mt-2">
-              Press Enter to send • Your identity remains anonymous
+              Presiona Enter para enviar • Tu identidad permanece anónima
             </p>
           </div>
         </div>

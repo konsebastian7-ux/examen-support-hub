@@ -19,43 +19,43 @@ const Groups = () => {
   const groups: Group[] = [
     {
       id: "1",
-      name: "Survivors Support Circle",
-      description: "A safe space for trauma survivors to share experiences and support each other.",
+      name: "Círculo de Apoyo para Sobrevivientes",
+      description: "Un espacio seguro para sobrevivientes de trauma para compartir experiencias y apoyarse mutuamente.",
       members: 247,
       isPrivate: true,
       category: "Trauma",
     },
     {
       id: "2",
-      name: "Anxiety Management",
-      description: "Share coping strategies and support for managing anxiety and stress.",
+      name: "Manejo de la Ansiedad",
+      description: "Comparte estrategias de afrontamiento y apoyo para manejar la ansiedad y el estrés.",
       members: 189,
       isPrivate: false,
-      category: "Mental Health",
+      category: "Salud Mental",
     },
     {
       id: "3",
-      name: "Women's Empowerment",
-      description: "Supporting women in their healing journey and personal growth.",
+      name: "Empoderamiento Femenino",
+      description: "Apoyando a las mujeres en su viaje de sanación y crecimiento personal.",
       members: 312,
       isPrivate: true,
-      category: "Support",
+      category: "Apoyo",
     },
     {
       id: "4",
-      name: "Recovery Path",
-      description: "For those on the path to recovery from trauma and abuse.",
+      name: "Camino de Recuperación",
+      description: "Para quienes están en el camino de recuperación del trauma y el abuso.",
       members: 156,
       isPrivate: true,
-      category: "Recovery",
+      category: "Recuperación",
     },
     {
       id: "5",
-      name: "Mindfulness & Healing",
-      description: "Practicing mindfulness techniques together for healing and growth.",
+      name: "Mindfulness y Sanación",
+      description: "Practicando técnicas de mindfulness juntos para la sanación y el crecimiento.",
       members: 203,
       isPrivate: false,
-      category: "Wellness",
+      category: "Bienestar",
     },
   ];
 
@@ -74,14 +74,14 @@ const Groups = () => {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-3xl font-bold mb-2">Community Support Groups</h1>
+              <h1 className="text-3xl font-bold mb-2">Grupos de Apoyo Comunitario</h1>
               <p className="text-muted-foreground">
-                Connect with others who share similar experiences in a safe environment.
+                Conéctate con otros que comparten experiencias similares en un entorno seguro.
               </p>
             </div>
             <Button className="bg-gradient-accent">
               <Plus className="mr-2 h-4 w-4" />
-              Create Group
+              Crear Grupo
             </Button>
           </div>
 
@@ -91,7 +91,7 @@ const Groups = () => {
             <Input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search groups..."
+              placeholder="Buscar grupos..."
               className="pl-10"
             />
           </div>
@@ -128,10 +128,10 @@ const Groups = () => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Users className="h-4 w-4" />
-                  <span>{group.members} members</span>
+                  <span>{group.members} miembros</span>
                 </div>
                 <Button variant="outline" size="sm">
-                  {group.isPrivate ? "Request to Join" : "Join Group"}
+                  {group.isPrivate ? "Solicitar Unirse" : "Unirse al Grupo"}
                 </Button>
               </div>
             </div>
@@ -141,18 +141,18 @@ const Groups = () => {
         {filteredGroups.length === 0 && (
           <div className="text-center py-12">
             <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <p className="text-muted-foreground">No groups found matching your search.</p>
+            <p className="text-muted-foreground">No se encontraron grupos que coincidan con tu búsqueda.</p>
           </div>
         )}
 
         {/* Info */}
         <div className="mt-8 p-6 bg-muted/50 border border-border rounded-xl">
-          <h3 className="font-semibold mb-2">About Support Groups</h3>
+          <h3 className="font-semibold mb-2">Acerca de los Grupos de Apoyo</h3>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li>• All groups maintain strict confidentiality and anonymity</li>
-            <li>• Private groups require approval from moderators</li>
-            <li>• Share experiences, coping strategies, and support</li>
-            <li>• Moderated by trained professionals for your safety</li>
+            <li>• Todos los grupos mantienen estricta confidencialidad y anonimato</li>
+            <li>• Los grupos privados requieren aprobación de los moderadores</li>
+            <li>• Comparte experiencias, estrategias de afrontamiento y apoyo</li>
+            <li>• Moderados por profesionales capacitados para tu seguridad</li>
           </ul>
         </div>
       </main>

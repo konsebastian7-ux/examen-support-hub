@@ -5,55 +5,55 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 const Progress = () => {
   const stats = [
     {
-      label: "Days Active",
+      label: "Días Activo",
       value: "14",
       icon: Calendar,
-      trend: "+7 from last week",
+      trend: "+7 desde la semana pasada",
       color: "text-primary",
     },
     {
-      label: "Chat Sessions",
+      label: "Sesiones de Chat",
       value: "8",
       icon: MessageCircle,
-      trend: "+2 from last week",
+      trend: "+2 desde la semana pasada",
       color: "text-secondary",
     },
     {
-      label: "Resources Accessed",
+      label: "Recursos Accedidos",
       value: "23",
       icon: Heart,
-      trend: "+12 from last week",
+      trend: "+12 desde la semana pasada",
       color: "text-primary",
     },
     {
-      label: "Assessment Score",
+      label: "Puntuación de Evaluación",
       value: "6/15",
       icon: TrendingUp,
-      trend: "Improved by 3 points",
+      trend: "Mejoró 3 puntos",
       color: "text-secondary",
     },
   ];
 
   const milestones = [
     {
-      date: "Today",
-      title: "Completed Mental Health Assessment",
-      description: "Took your first step in understanding your mental health status.",
+      date: "Hoy",
+      title: "Completaste la Evaluación de Salud Mental",
+      description: "Diste tu primer paso para entender tu estado de salud mental.",
     },
     {
-      date: "Yesterday",
-      title: "Joined Support Group",
-      description: "Connected with the Survivors Support Circle community.",
+      date: "Ayer",
+      title: "Te Uniste a un Grupo de Apoyo",
+      description: "Te conectaste con la comunidad del Círculo de Apoyo para Sobrevivientes.",
     },
     {
-      date: "3 days ago",
-      title: "First Chat Session",
-      description: "Had your first conversation with a support professional.",
+      date: "Hace 3 días",
+      title: "Primera Sesión de Chat",
+      description: "Tuviste tu primera conversación con un profesional de apoyo.",
     },
     {
-      date: "1 week ago",
-      title: "Started Your Journey",
-      description: "Created your account and began exploring Examen resources.",
+      date: "Hace 1 semana",
+      title: "Comenzaste tu Viaje",
+      description: "Creaste tu cuenta y comenzaste a explorar los recursos de Examen.",
     },
   ];
 
@@ -63,9 +63,9 @@ const Progress = () => {
       
       <main className="container mx-auto px-4 py-8 max-w-6xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Your Progress</h1>
+          <h1 className="text-3xl font-bold mb-2">Tu Progreso</h1>
           <p className="text-muted-foreground">
-            Track your mental health journey and celebrate your achievements.
+            Sigue tu viaje de salud mental y celebra tus logros.
           </p>
         </div>
 
@@ -94,7 +94,7 @@ const Progress = () => {
 
         {/* Milestones */}
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold mb-6">Your Milestones</h2>
+          <h2 className="text-2xl font-semibold mb-6">Tus Hitos</h2>
           <div className="space-y-4">
             {milestones.map((milestone, index) => (
               <div
@@ -122,23 +122,23 @@ const Progress = () => {
 
         {/* Encouragement */}
         <div className="bg-gradient-card border border-border rounded-xl p-6">
-          <h3 className="text-xl font-semibold mb-3">Keep Going! 🌟</h3>
+          <h3 className="text-xl font-semibold mb-3">¡Sigue Adelante! 🌟</h3>
           <p className="text-muted-foreground mb-4">
-            You've made significant progress on your healing journey. Every step forward, no matter how small, 
-            is a victory worth celebrating. Remember, healing is not linear, and it's okay to have ups and downs.
+            Has hecho un progreso significativo en tu viaje de sanación. Cada paso adelante, no importa cuán pequeño, 
+            es una victoria que vale la pena celebrar. Recuerda, la sanación no es lineal, y está bien tener altibajos.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div className="p-3 bg-muted/50 rounded-lg">
-              <p className="font-semibold mb-1">Stay Consistent</p>
-              <p className="text-muted-foreground text-xs">Regular engagement helps build resilience</p>
+              <p className="font-semibold mb-1">Mantén la Constancia</p>
+              <p className="text-muted-foreground text-xs">El compromiso regular ayuda a construir resiliencia</p>
             </div>
             <div className="p-3 bg-muted/50 rounded-lg">
-              <p className="font-semibold mb-1">Reach Out</p>
-              <p className="text-muted-foreground text-xs">Connect with support when you need it</p>
+              <p className="font-semibold mb-1">Pide Ayuda</p>
+              <p className="text-muted-foreground text-xs">Conéctate con apoyo cuando lo necesites</p>
             </div>
             <div className="p-3 bg-muted/50 rounded-lg">
-              <p className="font-semibold mb-1">Be Patient</p>
-              <p className="text-muted-foreground text-xs">Healing takes time, and that's okay</p>
+              <p className="font-semibold mb-1">Ten Paciencia</p>
+              <p className="text-muted-foreground text-xs">La sanación toma tiempo, y eso está bien</p>
             </div>
           </div>
         </div>

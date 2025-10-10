@@ -6,64 +6,64 @@ const Index = () => {
   const features = [
     {
       icon: MessageCircle,
-      title: "Anonymous Support Chat",
-      description: "Connect with support professionals in a secure, anonymous environment to share your feelings without fear of judgment.",
+      title: "Chat de Apoyo Anónimo",
+      description: "Conéctate con profesionales de apoyo en un entorno seguro y anónimo para compartir tus sentimientos sin miedo al juicio.",
       path: "/chat",
       priority: "must" as const,
     },
     {
       icon: AlertCircle,
-      title: "Emergency Assistance",
-      description: "Quick access to emergency services and crisis support when you need immediate help.",
+      title: "Asistencia de Emergencia",
+      description: "Acceso rápido a servicios de emergencia y apoyo en crisis cuando necesites ayuda inmediata.",
       path: "/emergency",
       priority: "must" as const,
     },
     {
       icon: BookOpen,
-      title: "Resource Library",
-      description: "Access a comprehensive library of mental health resources, articles, and support materials.",
+      title: "Biblioteca de Recursos",
+      description: "Accede a una biblioteca completa de recursos de salud mental, artículos y materiales de apoyo.",
       path: "/resources",
       priority: "must" as const,
     },
     {
       icon: MessageSquare,
-      title: "Share Feedback",
-      description: "Help us improve by sharing your experience and suggestions anonymously.",
+      title: "Compartir Opiniones",
+      description: "Ayúdanos a mejorar compartiendo tu experiencia y sugerencias de forma anónima.",
       path: "/feedback",
       priority: "must" as const,
     },
     {
       icon: Users,
-      title: "Support Groups",
-      description: "Join or create support groups to connect with others who share similar experiences.",
+      title: "Grupos de Apoyo",
+      description: "Únete o crea grupos de apoyo para conectar con otros que comparten experiencias similares.",
       path: "/groups",
       priority: "should" as const,
     },
     {
       icon: Heart,
-      title: "Mental Health Assessment",
-      description: "Take a self-assessment to better understand your mental health status and get personalized recommendations.",
+      title: "Evaluación de Salud Mental",
+      description: "Realiza una autoevaluación para entender mejor tu estado de salud mental y obtener recomendaciones personalizadas.",
       path: "/assessment",
       priority: "should" as const,
     },
     {
       icon: TrendingUp,
-      title: "Track Your Progress",
-      description: "Monitor your mental health journey and see your improvements over time with visual progress tracking.",
+      title: "Seguimiento de tu Progreso",
+      description: "Monitorea tu viaje de salud mental y observa tus mejoras a lo largo del tiempo con seguimiento visual.",
       path: "/progress",
       priority: "should" as const,
     },
     {
       icon: MapPin,
-      title: "Local Resources",
-      description: "Find verified mental health resources and support services in your area.",
+      title: "Recursos Locales",
+      description: "Encuentra recursos de salud mental verificados y servicios de apoyo en tu área.",
       path: "/local",
       priority: "should" as const,
     },
     {
       icon: Globe,
-      title: "Language Settings",
-      description: "Access Examen in your preferred language for a better experience.",
+      title: "Configuración de Idioma",
+      description: "Accede a Examen en tu idioma preferido para una mejor experiencia.",
       path: "/settings",
       priority: "should" as const,
     },
@@ -78,11 +78,11 @@ const Index = () => {
         <div className="text-center mb-12 space-y-4">
           <div className="inline-block">
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-accent bg-clip-text text-transparent">
-              Welcome to Examen
+              Bienvenido a Examen
             </h1>
           </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A safe, anonymous space for vulnerable individuals to express their feelings and connect with support professionals.
+            Un espacio seguro y anónimo para que personas vulnerables expresen sus sentimientos y se conecten con profesionales de apoyo.
           </p>
         </div>
 
@@ -95,10 +95,10 @@ const Index = () => {
 
         {/* Info Section */}
         <div className="mt-12 p-6 bg-gradient-card border border-border rounded-xl">
-          <h2 className="text-2xl font-semibold mb-4">Your Safety is Our Priority</h2>
+          <h2 className="text-2xl font-semibold mb-4">Tu Seguridad es Nuestra Prioridad</h2>
           <p className="text-muted-foreground leading-relaxed">
-            Examen is designed to provide a secure and confidential environment for those who have experienced trauma. 
-            All interactions are anonymous and encrypted. We're here to support your journey toward healing and recovery.
+            Examen está diseñado para proporcionar un entorno seguro y confidencial para aquellos que han experimentado trauma. 
+            Todas las interacciones son anónimas y cifradas. Estamos aquí para apoyar tu viaje hacia la sanación y recuperación.
           </p>
         </div>
       </main>

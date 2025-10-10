@@ -19,50 +19,50 @@ const Resources = () => {
   const resources: Resource[] = [
     {
       id: "1",
-      title: "Understanding Trauma and Its Effects",
-      category: "Education",
+      title: "Entendiendo el Trauma y sus Efectos",
+      category: "Educación",
       type: "article",
-      description: "Learn about how trauma affects the mind and body, and the first steps toward healing.",
-      duration: "8 min read",
+      description: "Aprende sobre cómo el trauma afecta la mente y el cuerpo, y los primeros pasos hacia la sanación.",
+      duration: "8 min de lectura",
     },
     {
       id: "2",
-      title: "Coping Strategies for Anxiety",
-      category: "Self-Help",
+      title: "Estrategias de Afrontamiento para la Ansiedad",
+      category: "Autoayuda",
       type: "video",
-      description: "Practical techniques to manage anxiety and stress in daily life.",
+      description: "Técnicas prácticas para manejar la ansiedad y el estrés en la vida diaria.",
       duration: "15 min",
     },
     {
       id: "3",
-      title: "Guided Meditation for Healing",
-      category: "Wellness",
+      title: "Meditación Guiada para la Sanación",
+      category: "Bienestar",
       type: "audio",
-      description: "A calming meditation session designed for trauma survivors.",
+      description: "Una sesión de meditación calmante diseñada para sobrevivientes de trauma.",
       duration: "20 min",
     },
     {
       id: "4",
-      title: "Rights and Resources for Survivors",
+      title: "Derechos y Recursos para Sobrevivientes",
       category: "Legal",
       type: "document",
-      description: "Comprehensive guide on legal rights and available resources.",
-      duration: "12 min read",
+      description: "Guía completa sobre derechos legales y recursos disponibles.",
+      duration: "12 min de lectura",
     },
     {
       id: "5",
-      title: "Building Healthy Relationships",
-      category: "Relationships",
+      title: "Construyendo Relaciones Saludables",
+      category: "Relaciones",
       type: "article",
-      description: "Understanding healthy boundaries and communication in relationships.",
-      duration: "10 min read",
+      description: "Entendiendo límites saludables y comunicación en las relaciones.",
+      duration: "10 min de lectura",
     },
     {
       id: "6",
-      title: "Self-Care Practices",
-      category: "Wellness",
+      title: "Prácticas de Autocuidado",
+      category: "Bienestar",
       type: "video",
-      description: "Daily practices to nurture your mental and emotional wellbeing.",
+      description: "Prácticas diarias para nutrir tu bienestar mental y emocional.",
       duration: "12 min",
     },
   ];
@@ -94,9 +94,9 @@ const Resources = () => {
       
       <main className="container mx-auto px-4 py-8 max-w-6xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Resource Library</h1>
+          <h1 className="text-3xl font-bold mb-2">Biblioteca de Recursos</h1>
           <p className="text-muted-foreground mb-6">
-            Explore our collection of mental health resources, guides, and support materials.
+            Explora nuestra colección de recursos de salud mental, guías y materiales de apoyo.
           </p>
 
           {/* Search */}
@@ -105,7 +105,7 @@ const Resources = () => {
             <Input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search resources..."
+              placeholder="Buscar recursos..."
               className="pl-10"
             />
           </div>
@@ -136,7 +136,7 @@ const Resources = () => {
                 <span className="text-xs text-muted-foreground">{resource.duration}</span>
                 <Button variant="ghost" size="sm">
                   <ExternalLink className="h-4 w-4 mr-1" />
-                  Open
+                  Abrir
                 </Button>
               </div>
             </div>
@@ -146,7 +146,7 @@ const Resources = () => {
         {filteredResources.length === 0 && (
           <div className="text-center py-12">
             <BookOpen className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <p className="text-muted-foreground">No resources found matching your search.</p>
+            <p className="text-muted-foreground">No se encontraron recursos que coincidan con tu búsqueda.</p>
           </div>
         )}
       </main>

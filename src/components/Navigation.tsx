@@ -3,15 +3,15 @@ import { Home, MessageCircle, AlertCircle, BookOpen, Users, Heart, TrendingUp, M
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { icon: Home, label: "Home", path: "/" },
+  { icon: Home, label: "Inicio", path: "/" },
   { icon: MessageCircle, label: "Chat", path: "/chat" },
-  { icon: AlertCircle, label: "Emergency", path: "/emergency" },
-  { icon: BookOpen, label: "Resources", path: "/resources" },
-  { icon: Users, label: "Groups", path: "/groups" },
-  { icon: Heart, label: "Assessment", path: "/assessment" },
-  { icon: TrendingUp, label: "Progress", path: "/progress" },
+  { icon: AlertCircle, label: "Emergencia", path: "/emergency" },
+  { icon: BookOpen, label: "Recursos", path: "/resources" },
+  { icon: Users, label: "Grupos", path: "/groups" },
+  { icon: Heart, label: "Evaluación", path: "/assessment" },
+  { icon: TrendingUp, label: "Progreso", path: "/progress" },
   { icon: MapPin, label: "Local", path: "/local" },
-  { icon: Settings, label: "Settings", path: "/settings" },
+  { icon: Settings, label: "Ajustes", path: "/settings" },
 ];
 
 export const Navigation = () => {

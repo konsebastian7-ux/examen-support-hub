@@ -20,47 +20,47 @@ const Local = () => {
   const resources: Resource[] = [
     {
       id: "1",
-      name: "City Mental Health Center",
-      type: "Counseling Services",
-      address: "123 Main Street, Downtown",
+      name: "Centro de Salud Mental de la Ciudad",
+      type: "Servicios de Consejería",
+      address: "Calle Principal 123, Centro",
       phone: "(555) 123-4567",
-      distance: "1.2 miles",
+      distance: "1.2 km",
       verified: true,
     },
     {
       id: "2",
-      name: "Hope Crisis Center",
-      type: "24/7 Crisis Support",
-      address: "456 Oak Avenue, Midtown",
+      name: "Centro de Crisis Esperanza",
+      type: "Apoyo en Crisis 24/7",
+      address: "Avenida Roble 456, Centro",
       phone: "(555) 234-5678",
-      distance: "2.5 miles",
+      distance: "2.5 km",
       verified: true,
     },
     {
       id: "3",
-      name: "Safe Haven Shelter",
-      type: "Emergency Housing",
-      address: "789 Elm Street, Westside",
+      name: "Refugio Puerto Seguro",
+      type: "Alojamiento de Emergencia",
+      address: "Calle Olmo 789, Oeste",
       phone: "(555) 345-6789",
-      distance: "3.1 miles",
+      distance: "3.1 km",
       verified: true,
     },
     {
       id: "4",
-      name: "Community Wellness Clinic",
-      type: "Medical & Mental Health",
-      address: "321 Pine Road, Eastside",
+      name: "Clínica de Bienestar Comunitario",
+      type: "Salud Médica y Mental",
+      address: "Camino Pino 321, Este",
       phone: "(555) 456-7890",
-      distance: "4.0 miles",
+      distance: "4.0 km",
       verified: true,
     },
     {
       id: "5",
-      name: "Trauma Recovery Center",
-      type: "Specialized Trauma Care",
-      address: "654 Maple Drive, Northside",
+      name: "Centro de Recuperación de Trauma",
+      type: "Cuidado Especializado en Trauma",
+      address: "Avenida Arce 654, Norte",
       phone: "(555) 567-8901",
-      distance: "5.2 miles",
+      distance: "5.2 km",
       verified: true,
     },
   ];
@@ -71,9 +71,9 @@ const Local = () => {
       
       <main className="container mx-auto px-4 py-8 max-w-6xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Local Resources</h1>
+          <h1 className="text-3xl font-bold mb-2">Recursos Locales</h1>
           <p className="text-muted-foreground mb-6">
-            Find verified mental health resources and support services in your area.
+            Encuentra recursos de salud mental verificados y servicios de apoyo en tu área.
           </p>
 
           {/* Location Search */}
@@ -83,13 +83,13 @@ const Local = () => {
               <Input
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                placeholder="Enter your location or zip code..."
+                placeholder="Ingresa tu ubicación o código postal..."
                 className="pl-10"
               />
             </div>
             <Button>
               <NavigationIcon className="mr-2 h-4 w-4" />
-              Use My Location
+              Usar Mi Ubicación
             </Button>
           </div>
         </div>
@@ -112,7 +112,7 @@ const Local = () => {
                         <h3 className="text-xl font-semibold">{resource.name}</h3>
                         {resource.verified && (
                           <span className="text-xs px-2 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20">
-                            Verified
+                            Verificado
                           </span>
                         )}
                       </div>
@@ -136,11 +136,11 @@ const Local = () => {
                 <div className="flex flex-col gap-2">
                   <Button variant="outline" size="sm">
                     <ExternalLink className="mr-2 h-4 w-4" />
-                    Details
+                    Detalles
                   </Button>
                   <Button variant="outline" size="sm">
                     <NavigationIcon className="mr-2 h-4 w-4" />
-                    Directions
+                    Direcciones
                   </Button>
                 </div>
               </div>
@@ -150,12 +150,12 @@ const Local = () => {
 
         {/* Info */}
         <div className="mt-8 p-6 bg-muted/50 border border-border rounded-xl">
-          <h3 className="font-semibold mb-3">About Local Resources</h3>
+          <h3 className="font-semibold mb-3">Acerca de los Recursos Locales</h3>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li>• All resources are verified and updated regularly</li>
-            <li>• Services may vary by location and availability</li>
-            <li>• Most resources offer free or sliding-scale fees</li>
-            <li>• Contact resources directly for current hours and services</li>
+            <li>• Todos los recursos están verificados y se actualizan regularmente</li>
+            <li>• Los servicios pueden variar según la ubicación y disponibilidad</li>
+            <li>• La mayoría de los recursos ofrecen tarifas gratuitas o con escala móvil</li>
+            <li>• Contacta directamente a los recursos para horarios y servicios actuales</li>
           </ul>
         </div>
       </main>
