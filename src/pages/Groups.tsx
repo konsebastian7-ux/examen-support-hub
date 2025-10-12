@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Users, Plus, Search, Lock, Globe } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface Group {
   id: string;
@@ -15,21 +16,22 @@ interface Group {
 
 const Groups = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const { toast } = useToast();
 
   const groups: Group[] = [
     {
       id: "1",
       name: "Círculo de Apoyo para Sobrevivientes",
       description: "Un espacio seguro para sobrevivientes de trauma para compartir experiencias y apoyarse mutuamente.",
-      members: 247,
-      isPrivate: true,
+      members: 0,
+      isPrivate: false,
       category: "Trauma",
     },
     {
       id: "2",
       name: "Manejo de la Ansiedad",
       description: "Comparte estrategias de afrontamiento y apoyo para manejar la ansiedad y el estrés.",
-      members: 189,
+      members: 0,
       isPrivate: false,
       category: "Salud Mental",
     },
@@ -37,27 +39,34 @@ const Groups = () => {
       id: "3",
       name: "Empoderamiento Femenino",
       description: "Apoyando a las mujeres en su viaje de sanación y crecimiento personal.",
-      members: 312,
-      isPrivate: true,
+      members: 0,
+      isPrivate: false,
       category: "Apoyo",
     },
     {
       id: "4",
       name: "Camino de Recuperación",
       description: "Para quienes están en el camino de recuperación del trauma y el abuso.",
-      members: 156,
-      isPrivate: true,
+      members: 0,
+      isPrivate: false,
       category: "Recuperación",
     },
     {
       id: "5",
       name: "Mindfulness y Sanación",
       description: "Practicando técnicas de mindfulness juntos para la sanación y el crecimiento.",
-      members: 203,
+      members: 0,
       isPrivate: false,
       category: "Bienestar",
     },
   ];
+
+  const handleJoinGroup = (groupName: string) => {
+    toast({
+      title: "¡Te has unido al grupo!",
+      description: `Ahora eres parte de "${groupName}". Podrás participar en las discusiones del grupo.`,
+    });
+  };
 
   const filteredGroups = groups.filter(
     (group) =>
@@ -130,8 +139,12 @@ const Groups = () => {
                   <Users className="h-4 w-4" />
                   <span>{group.members} miembros</span>
                 </div>
-                <Button variant="outline" size="sm">
-                  {group.isPrivate ? "Solicitar Unirse" : "Unirse al Grupo"}
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => handleJoinGroup(group.name)}
+                >
+                  Unirse al Grupo
                 </Button>
               </div>
             </div>
