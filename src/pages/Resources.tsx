@@ -11,6 +11,7 @@ interface Resource {
   type: "article" | "video" | "audio" | "document";
   description: string;
   duration?: string;
+  url: string;
 }
 
 const Resources = () => {
@@ -24,6 +25,7 @@ const Resources = () => {
       type: "article",
       description: "Aprende sobre cómo el trauma afecta la mente y el cuerpo, y los primeros pasos hacia la sanación.",
       duration: "8 min de lectura",
+      url: "https://www.psychologytoday.com/intl/blog/the-new-resilience/202210/understanding-trauma-and-its-effects"
     },
     {
       id: "2",
@@ -32,6 +34,7 @@ const Resources = () => {
       type: "video",
       description: "Técnicas prácticas para manejar la ansiedad y el estrés en la vida diaria.",
       duration: "15 min",
+      url: "https://www.youtube.com/watch?v=WWloIAQpMcQ"
     },
     {
       id: "3",
@@ -40,6 +43,7 @@ const Resources = () => {
       type: "audio",
       description: "Una sesión de meditación calmante diseñada para sobrevivientes de trauma.",
       duration: "20 min",
+      url: "https://www.youtube.com/watch?v=z6X5oEIg6Ak"
     },
     {
       id: "4",
@@ -48,6 +52,7 @@ const Resources = () => {
       type: "document",
       description: "Guía completa sobre derechos legales y recursos disponibles.",
       duration: "12 min de lectura",
+      url: "https://www.rainn.org/es/articles/tus-derechos-como-victima"
     },
     {
       id: "5",
@@ -56,6 +61,7 @@ const Resources = () => {
       type: "article",
       description: "Entendiendo límites saludables y comunicación en las relaciones.",
       duration: "10 min de lectura",
+      url: "https://www.healthychildren.org/spanish/family-life/family-dynamics/communication-discipline/paginas/healthy-communication-with-your-child.aspx"
     },
     {
       id: "6",
@@ -64,6 +70,7 @@ const Resources = () => {
       type: "video",
       description: "Prácticas diarias para nutrir tu bienestar mental y emocional.",
       duration: "12 min",
+      url: "https://www.youtube.com/watch?v=w8sJC8eaMQo"
     },
   ];
 
@@ -134,7 +141,11 @@ const Resources = () => {
 
               <div className="flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">{resource.duration}</span>
-                <Button variant="ghost" size="sm">
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  onClick={() => window.open(resource.url, '_blank')}
+                >
                   <ExternalLink className="h-4 w-4 mr-1" />
                   Abrir
                 </Button>
