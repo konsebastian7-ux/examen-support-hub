@@ -7,10 +7,17 @@ const Emergency = () => {
   const { toast } = useToast();
 
   const handleEmergencyCall = () => {
-    toast({
-      title: "Conectando con Servicios de Emergencia",
-      description: "Serás conectado con servicios de emergencia en breve.",
-    });
+    window.location.href = "tel:911";
+  };
+
+  const handleContactClick = (contact: typeof emergencyContacts[0]) => {
+    if (contact.number.includes("Envía")) {
+      // Para mensajes de texto
+      window.location.href = "sms:741741?body=HOLA";
+    } else {
+      // Para llamadas telefónicas
+      window.location.href = `tel:${contact.number.replace(/[^0-9]/g, '')}`;
+    }
   };
 
   const emergencyContacts = [
@@ -84,7 +91,12 @@ const Emergency = () => {
                   <p className="text-sm text-muted-foreground mb-2">{contact.description}</p>
                   <p className="text-lg font-semibold text-primary">{contact.number}</p>
                 </div>
-                <Button variant="outline" size="icon" className="flex-shrink-0">
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  className="flex-shrink-0"
+                  onClick={() => handleContactClick(contact)}
+                >
                   <ExternalLink className="h-4 w-4" />
                 </Button>
               </div>
