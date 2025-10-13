@@ -14,6 +14,7 @@ import Progress from "./pages/Progress";
 import Local from "./pages/Local";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import Auth from "./pages/Auth";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/emergency" element={<Emergency />} />
           <Route path="/resources" element={<Resources />} />
