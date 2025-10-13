@@ -101,6 +101,57 @@ export type Database = {
           },
         ]
       }
+      mental_health_resources: {
+        Row: {
+          address: string
+          city: string
+          country: string
+          created_at: string
+          description: string | null
+          hours: string | null
+          id: string
+          latitude: number
+          longitude: number
+          name: string
+          phone: string
+          type: string
+          verified: boolean
+          website: string | null
+        }
+        Insert: {
+          address: string
+          city: string
+          country: string
+          created_at?: string
+          description?: string | null
+          hours?: string | null
+          id?: string
+          latitude: number
+          longitude: number
+          name: string
+          phone: string
+          type: string
+          verified?: boolean
+          website?: string | null
+        }
+        Update: {
+          address?: string
+          city?: string
+          country?: string
+          created_at?: string
+          description?: string | null
+          hours?: string | null
+          id?: string
+          latitude?: number
+          longitude?: number
+          name?: string
+          phone?: string
+          type?: string
+          verified?: boolean
+          website?: string | null
+        }
+        Relationships: []
+      }
       milestones: {
         Row: {
           created_at: string
@@ -188,7 +239,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      calculate_distance: {
+        Args: { lat1: number; lat2: number; lon1: number; lon2: number }
+        Returns: number
+      }
     }
     Enums: {
       [_ in never]: never
