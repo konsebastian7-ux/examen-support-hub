@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Send, UserCircle2, Bot, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { supabase } from "@/integrations/supabase/client";
 
 interface Message {
   id: string;
@@ -14,16 +15,11 @@ interface Message {
 }
 
 const Chat = () => {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      text: "¡Hola! Estoy aquí para apoyarte. Todo lo que compartas es completamente anónimo y confidencial. ¿Cómo te sientes hoy?",
-      sender: "assistant",
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId, setSessionId] = useState<string | null>(null);
+  const [isLoadingHistory, setIsLoadingHistory] = useState(true);
   const { toast } = useToast();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -34,6 +30,97 @@ const Chat = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    loadChatHistory();
+  }, []);
+
+  const loadChatHistory = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        setIsLoadingHistory(false);
+        setMessages([{
+          id: "welcome",
+          text: "¡Hola! Estoy aquí para apoyarte. Todo lo que compartas es completamente anónimo y confidencial. ¿Cómo te sientes hoy?",
+          sender: "assistant",
+          timestamp: new Date(),
+        }]);
+        return;
+      }
+
+      // Get or create session
+      const { data: sessions } = await supabase
+        .from('chat_sessions')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
+        .limit(1);
+
+      let currentSessionId: string;
+      
+      if (sessions && sessions.length > 0) {
+        currentSessionId = sessions[0].id;
+      } else {
+        const { data: newSession } = await supabase
+          .from('chat_sessions')
+          .insert({ user_id: user.id })
+          .select()
+          .single();
+        currentSessionId = newSession!.id;
+      }
+
+      setSessionId(currentSessionId);
+
+      // Load messages
+      const { data: chatMessages } = await supabase
+        .from('chat_messages')
+        .select('*')
+        .eq('session_id', currentSessionId)
+        .order('created_at', { ascending: true });
+
+      if (chatMessages && chatMessages.length > 0) {
+        setMessages(chatMessages.map(msg => ({
+          id: msg.id,
+          text: msg.content,
+          sender: msg.role as "user" | "assistant",
+          timestamp: new Date(msg.created_at),
+        })));
+      } else {
+        setMessages([{
+          id: "welcome",
+          text: "¡Hola! Estoy aquí para apoyarte. Todo lo que compartas es completamente anónimo y confidencial. ¿Cómo te sientes hoy?",
+          sender: "assistant",
+          timestamp: new Date(),
+        }]);
+      }
+    } catch (error) {
+      console.error('Error loading chat history:', error);
+      toast({
+        title: "Error",
+        description: "No se pudo cargar el historial de chat",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoadingHistory(false);
+    }
+  };
+
+  const saveMessage = async (message: Message) => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user || !sessionId) return;
+
+      await supabase.from('chat_messages').insert({
+        session_id: sessionId,
+        user_id: user.id,
+        role: message.sender,
+        content: message.text,
+      });
+    } catch (error) {
+      console.error('Error saving message:', error);
+    }
+  };
 
   const handleSend = async () => {
     if (!inputValue.trim() || isLoading) return;
@@ -48,6 +135,9 @@ const Chat = () => {
     setMessages(prev => [...prev, userMessage]);
     setInputValue("");
     setIsLoading(true);
+    
+    // Save user message
+    await saveMessage(userMessage);
 
     let assistantMessageContent = "";
     const assistantMessageId = (Date.now() + 1).toString();
@@ -156,6 +246,16 @@ const Chat = () => {
           } catch {}
         }
       }
+
+      // Save assistant message
+      if (assistantMessageContent) {
+        await saveMessage({
+          id: assistantMessageId,
+          text: assistantMessageContent,
+          sender: "assistant",
+          timestamp: new Date(),
+        });
+      }
     } catch (error) {
       console.error("Error:", error);
       toast({
@@ -191,7 +291,12 @@ const Chat = () => {
         <div className="bg-card border border-border rounded-xl overflow-hidden flex flex-col" style={{ height: "calc(100vh - 300px)" }}>
           {/* Messages Area */}
           <div className="flex-1 overflow-y-auto p-6 space-y-4">
-            {messages.map((message) => (
+            {isLoadingHistory ? (
+              <div className="flex items-center justify-center h-full">
+                <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+              </div>
+            ) : (
+              messages.map((message) => (
               <div
                 key={message.id}
                 className={`flex gap-3 ${
@@ -222,7 +327,8 @@ const Chat = () => {
                   </span>
                 </div>
               </div>
-            ))}
+              ))
+            )}
           </div>
 
           {/* Input Area */}
