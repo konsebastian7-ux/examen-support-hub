@@ -1,10 +1,8 @@
 import { Navigation } from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { AlertCircle, Phone, MessageSquare, ExternalLink } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 
 const Emergency = () => {
-  const { toast } = useToast();
 
   const handleEmergencyCall = () => {
     window.location.href = "tel:911";
@@ -22,24 +20,24 @@ const Emergency = () => {
 
   const emergencyContacts = [
     {
-      name: "Línea Nacional de Prevención del Suicidio",
-      number: "988",
-      description: "Apoyo gratuito y confidencial 24/7",
+      name: "Centro de Asistencia al Suicida (Argentina)",
+      number: "135",
+      description: "Atención telefónica gratuita 24/7",
     },
     {
-      name: "Línea de Crisis por Texto",
-      number: "Envía HOLA al 741741",
-      description: "Apoyo gratuito 24/7 por mensaje",
+      name: "Línea 102 - Derechos de Niños y Adolescentes",
+      number: "102",
+      description: "Atención gratuita para menores en riesgo",
     },
     {
-      name: "RAINN (Agresión Sexual)",
-      number: "1-800-656-4673",
-      description: "Apoyo confidencial 24/7",
+      name: "Línea 144 - Violencia de Género",
+      number: "144",
+      description: "Atención 24/7 por violencia de género",
     },
     {
-      name: "Línea Nacional de Violencia Doméstica",
-      number: "1-800-799-7233",
-      description: "Apoyo y recursos 24/7",
+      name: "SAME - Emergencias Médicas",
+      number: "107",
+      description: "Emergencias médicas y psiquiátricas",
     },
   ];
 
