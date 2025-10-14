@@ -1,9 +1,11 @@
 import { Navigation } from "@/components/Navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Users, Plus, Search, Lock, Globe } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
 
 interface Group {
   id: string;
@@ -16,7 +18,9 @@ interface Group {
 
 const Groups = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [memberCounts, setMemberCounts] = useState<Record<string, number>>({});
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const groups: Group[] = [
     {
@@ -61,11 +65,59 @@ const Groups = () => {
     },
   ];
 
-  const handleJoinGroup = (groupName: string) => {
+  useEffect(() => {
+    loadMemberCounts();
+  }, []);
+
+  const loadMemberCounts = async () => {
+    const counts: Record<string, number> = {};
+    for (const group of groups) {
+      const { count } = await supabase
+        .from('group_members')
+        .select('*', { count: 'exact', head: true })
+        .eq('group_id', group.id);
+      counts[group.id] = count || 0;
+    }
+    setMemberCounts(counts);
+  };
+
+  const handleJoinGroup = async (groupId: string, groupName: string) => {
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user) {
+      toast({
+        title: "Error",
+        description: "Debes iniciar sesión para unirte a un grupo.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const { error } = await supabase
+      .from('group_members')
+      .insert({ group_id: groupId, user_id: user.id });
+
+    if (error) {
+      if (error.code === '23505') {
+        // User is already a member, just navigate
+        navigate(`/group/${groupId}`);
+      } else {
+        toast({
+          title: "Error",
+          description: "No se pudo unir al grupo. Intenta de nuevo.",
+          variant: "destructive",
+        });
+      }
+      return;
+    }
+
     toast({
       title: "¡Te has unido al grupo!",
-      description: `Ahora eres parte de "${groupName}". Podrás participar en las discusiones del grupo.`,
+      description: `Ahora eres parte de "${groupName}".`,
     });
+    
+    loadMemberCounts();
+    navigate(`/group/${groupId}`);
   };
 
   const filteredGroups = groups.filter(
@@ -137,12 +189,12 @@ const Groups = () => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Users className="h-4 w-4" />
-                  <span>{group.members} miembros</span>
+                  <span>{memberCounts[group.id] || 0} miembros</span>
                 </div>
                 <Button 
                   variant="outline" 
                   size="sm"
-                  onClick={() => handleJoinGroup(group.name)}
+                  onClick={() => handleJoinGroup(group.id, group.name)}
                 >
                   Unirse al Grupo
                 </Button>

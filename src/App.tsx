@@ -9,6 +9,7 @@ import Emergency from "./pages/Emergency";
 import Resources from "./pages/Resources";
 import Feedback from "./pages/Feedback";
 import Groups from "./pages/Groups";
+import GroupDetail from "./pages/GroupDetail";
 import Assessment from "./pages/Assessment";
 import Progress from "./pages/Progress";
 import Local from "./pages/Local";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/resources" element={<Resources />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/groups" element={<Groups />} />
+          <Route path="/group/:groupId" element={<GroupDetail />} />
           <Route path="/assessment" element={<Assessment />} />
           <Route path="/progress" element={<Progress />} />
           <Route path="/local" element={<Local />} />
