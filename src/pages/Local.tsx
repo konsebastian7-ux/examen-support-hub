@@ -127,7 +127,8 @@ const Local = () => {
   };
 
   const handleDirections = (resource: Resource) => {
-    const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(resource.address)}`;
+    // Usar coordenadas exactas para mayor precisión
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${resource.latitude},${resource.longitude}`;
     window.open(url, '_blank');
   };
 
