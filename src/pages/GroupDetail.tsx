@@ -32,7 +32,6 @@ const GroupDetail = () => {
   const [newPost, setNewPost] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isSending, setIsSending] = useState(false);
-  const [isMember, setIsMember] = useState(false);
   const [memberCount, setMemberCount] = useState(0);
   const [group, setGroup] = useState<Group | null>(null);
 
@@ -70,7 +69,6 @@ const GroupDetail = () => {
   ];
 
   useEffect(() => {
-    checkMembership();
     loadPosts();
     loadMemberCount();
     
@@ -99,19 +97,6 @@ const GroupDetail = () => {
     };
   }, [groupId]);
 
-  const checkMembership = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user || !groupId) return;
-
-    const { data } = await supabase
-      .from('group_members')
-      .select('id')
-      .eq('group_id', groupId)
-      .eq('user_id', user.id)
-      .single();
-
-    setIsMember(!!data);
-  };
 
   const loadMemberCount = async () => {
     if (!groupId) return;
@@ -208,26 +193,6 @@ const GroupDetail = () => {
     return `${firstName} ${lastName}`.trim();
   };
 
-  if (!isMember && !isLoading) {
-    return (
-      <div className="min-h-screen pb-20 md:pt-20">
-        <Navigation />
-        <main className="container mx-auto px-4 py-8 max-w-4xl">
-          <div className="text-center py-12">
-            <Users className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-            <h2 className="text-2xl font-bold mb-2">Acceso Denegado</h2>
-            <p className="text-muted-foreground mb-6">
-              Debes ser miembro de este grupo para ver las discusiones.
-            </p>
-            <Button onClick={() => navigate('/groups')}>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Volver a Grupos
-            </Button>
-          </div>
-        </main>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen pb-20 md:pt-20">
