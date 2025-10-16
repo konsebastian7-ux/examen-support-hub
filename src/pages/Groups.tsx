@@ -19,6 +19,7 @@ interface Group {
 const Groups = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [memberCounts, setMemberCounts] = useState<Record<string, number>>({});
+  const [joinedGroups, setJoinedGroups] = useState<Record<string, boolean>>({});
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -67,6 +68,7 @@ const Groups = () => {
 
   useEffect(() => {
     loadMemberCounts();
+    loadJoinedGroups();
   }, []);
 
   const loadMemberCounts = async () => {
@@ -79,6 +81,27 @@ const Groups = () => {
       counts[group.id] = count || 0;
     }
     setMemberCounts(counts);
+  };
+
+  const loadJoinedGroups = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user) {
+      setJoinedGroups({});
+      return;
+    }
+
+    const joined: Record<string, boolean> = {};
+    for (const group of groups) {
+      const { data } = await supabase
+        .from('group_members')
+        .select('id')
+        .eq('group_id', group.id)
+        .eq('user_id', user.id)
+        .maybeSingle();
+      joined[group.id] = !!data;
+    }
+    setJoinedGroups(joined);
   };
 
   const handleJoinGroup = async (groupId: string, groupName: string) => {
@@ -117,6 +140,7 @@ const Groups = () => {
     });
     
     loadMemberCounts();
+    loadJoinedGroups();
     navigate(`/group/${groupId}`);
   };
 
@@ -194,9 +218,9 @@ const Groups = () => {
                 <Button 
                   variant="outline" 
                   size="sm"
-                  onClick={() => handleJoinGroup(group.id, group.name)}
+                  onClick={() => joinedGroups[group.id] ? navigate(`/group/${group.id}`) : handleJoinGroup(group.id, group.name)}
                 >
-                  Unirse al Grupo
+                  {joinedGroups[group.id] ? "Ver Grupo" : "Unirse al Grupo"}
                 </Button>
               </div>
             </div>
