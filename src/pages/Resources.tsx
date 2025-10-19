@@ -25,7 +25,7 @@ const Resources = () => {
       type: "article",
       description: "Aprende sobre cómo el trauma afecta la mente y el cuerpo, y los primeros pasos hacia la sanación.",
       duration: "8 min de lectura",
-      url: "https://www.psychologytoday.com/intl/blog/the-new-resilience/202210/understanding-trauma-and-its-effects"
+      url: "https://nbpsicologia.es/consecuencias-experiencia-traumatica/"
     },
     {
       id: "2",
@@ -69,8 +69,8 @@ const Resources = () => {
       category: "Bienestar",
       type: "video",
       description: "Prácticas diarias para nutrir tu bienestar mental y emocional.",
-      duration: "12 min",
-      url: "https://www.youtube.com/watch?v=w8sJC8eaMQo"
+      duration: "5 min",
+      url: "https://www.youtube.com/watch?v=cjkmDOE5pm8"
     },
   ];
 
