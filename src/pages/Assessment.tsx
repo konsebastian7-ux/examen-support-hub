@@ -62,6 +62,56 @@ const Assessment = () => {
     },
     {
       id: "5",
+      text: "¿Con qué frecuencia has tenido dificultad para concentrarte en tareas o tomar decisiones?",
+      options: [
+        { value: "0", label: "Para nada" },
+        { value: "1", label: "Varios días" },
+        { value: "2", label: "Más de la mitad de los días" },
+        { value: "3", label: "Casi todos los días" },
+      ],
+    },
+    {
+      id: "6",
+      text: "¿Con qué frecuencia te has sentido cansado o con poca energía?",
+      options: [
+        { value: "0", label: "Para nada" },
+        { value: "1", label: "Varios días" },
+        { value: "2", label: "Más de la mitad de los días" },
+        { value: "3", label: "Casi todos los días" },
+      ],
+    },
+    {
+      id: "7",
+      text: "¿Has notado cambios significativos en tu apetito o peso?",
+      options: [
+        { value: "0", label: "Ningún cambio" },
+        { value: "1", label: "Cambios leves" },
+        { value: "2", label: "Cambios moderados" },
+        { value: "3", label: "Cambios significativos" },
+      ],
+    },
+    {
+      id: "8",
+      text: "¿Con qué frecuencia te has sentido mal contigo mismo o que eres un fracaso?",
+      options: [
+        { value: "0", label: "Para nada" },
+        { value: "1", label: "Varios días" },
+        { value: "2", label: "Más de la mitad de los días" },
+        { value: "3", label: "Casi todos los días" },
+      ],
+    },
+    {
+      id: "9",
+      text: "¿Con qué frecuencia has evitado actividades sociales o contacto con otras personas?",
+      options: [
+        { value: "0", label: "Para nada" },
+        { value: "1", label: "Varios días" },
+        { value: "2", label: "Más de la mitad de los días" },
+        { value: "3", label: "Casi todos los días" },
+      ],
+    },
+    {
+      id: "10",
       text: "¿Cómo calificarías tu bienestar mental en general?",
       options: [
         { value: "0", label: "Excelente" },
@@ -101,19 +151,19 @@ const Assessment = () => {
   };
 
   const getRecommendation = (score: number) => {
-    if (score <= 4) {
+    if (score <= 7) {
       return {
         level: "Mínimo",
         color: "text-secondary",
         message: "Muestras signos mínimos de malestar. Continúa practicando el autocuidado.",
       };
-    } else if (score <= 9) {
+    } else if (score <= 15) {
       return {
         level: "Leve",
         color: "text-primary",
         message: "Podrías estar experimentando síntomas leves. Considera explorar nuestros recursos.",
       };
-    } else if (score <= 14) {
+    } else if (score <= 22) {
       return {
         level: "Moderado",
         color: "text-yellow-500",
