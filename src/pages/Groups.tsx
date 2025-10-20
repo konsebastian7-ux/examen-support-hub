@@ -6,6 +6,7 @@ import { Users, Plus, Search, Lock, Globe } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
+import { Session } from "@supabase/supabase-js";
 
 interface Group {
   id: string;
@@ -20,6 +21,7 @@ const Groups = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [memberCounts, setMemberCounts] = useState<Record<string, number>>({});
   const [joinedGroups, setJoinedGroups] = useState<Record<string, boolean>>({});
+  const [session, setSession] = useState<Session | null>(null);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -67,8 +69,29 @@ const Groups = () => {
   ];
 
   useEffect(() => {
+    // Set up auth state listener
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+        if (session) {
+          loadJoinedGroups(session.user.id);
+        } else {
+          setJoinedGroups({});
+        }
+      }
+    );
+
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      if (session) {
+        loadJoinedGroups(session.user.id);
+      }
+    });
+
     loadMemberCounts();
-    loadJoinedGroups();
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const loadMemberCounts = async () => {
@@ -83,21 +106,14 @@ const Groups = () => {
     setMemberCounts(counts);
   };
 
-  const loadJoinedGroups = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    
-    if (!user) {
-      setJoinedGroups({});
-      return;
-    }
-
+  const loadJoinedGroups = async (userId: string) => {
     const joined: Record<string, boolean> = {};
     for (const group of groups) {
       const { data } = await supabase
         .from('group_members')
         .select('id')
         .eq('group_id', group.id)
-        .eq('user_id', user.id)
+        .eq('user_id', userId)
         .maybeSingle();
       joined[group.id] = !!data;
     }
@@ -105,20 +121,19 @@ const Groups = () => {
   };
 
   const handleJoinGroup = async (groupId: string, groupName: string) => {
-    const { data: { user } } = await supabase.auth.getUser();
-    
-    if (!user) {
+    if (!session?.user) {
       toast({
         title: "Error",
         description: "Debes iniciar sesión para unirte a un grupo.",
         variant: "destructive",
       });
+      navigate('/auth');
       return;
     }
 
     const { error } = await supabase
       .from('group_members')
-      .insert({ group_id: groupId, user_id: user.id });
+      .insert({ group_id: groupId, user_id: session.user.id });
 
     if (error) {
       if (error.code === '23505') {
@@ -140,7 +155,7 @@ const Groups = () => {
     });
     
     loadMemberCounts();
-    loadJoinedGroups();
+    loadJoinedGroups(session.user.id);
     navigate(`/group/${groupId}`);
   };
 

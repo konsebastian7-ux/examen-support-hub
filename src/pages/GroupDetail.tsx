@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { ArrowLeft, Send, Users, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { Session } from "@supabase/supabase-js";
 
 interface Post {
   id: string;
@@ -34,6 +35,7 @@ const GroupDetail = () => {
   const [isSending, setIsSending] = useState(false);
   const [memberCount, setMemberCount] = useState(0);
   const [group, setGroup] = useState<Group | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
 
   const groups: Group[] = [
     {
@@ -69,6 +71,18 @@ const GroupDetail = () => {
   ];
 
   useEffect(() => {
+    // Set up auth state listener
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+      }
+    );
+
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
     loadPosts();
     loadMemberCount();
     
@@ -93,6 +107,7 @@ const GroupDetail = () => {
       .subscribe();
 
     return () => {
+      subscription.unsubscribe();
       supabase.removeChannel(channel);
     };
   }, [groupId]);
@@ -149,13 +164,13 @@ const GroupDetail = () => {
   const handleSendPost = async () => {
     if (!newPost.trim() || !groupId) return;
 
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
+    if (!session?.user) {
       toast({
         title: "Error",
         description: "Debes iniciar sesión para publicar.",
         variant: "destructive",
       });
+      navigate('/auth');
       return;
     }
 
@@ -164,7 +179,7 @@ const GroupDetail = () => {
       .from('group_posts')
       .insert({
         group_id: groupId,
-        user_id: user.id,
+        user_id: session.user.id,
         content: newPost.trim(),
       });
 
